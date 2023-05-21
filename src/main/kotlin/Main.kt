@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     val summ = 14800
     when (i) {
         1 -> myTransfer()
-        2 -> mySlang(50)
+        2 -> mySlang(511)
         3 -> myMusic(active, summ)
         else -> println("Ошибочный ввод")
     }
@@ -26,11 +26,17 @@ fun myTransfer() {
     val s = readln()
     val amount = s?.toInt() ?: throw Exception ()
     val commition: Int = if(amount<35) {
-        amount
+        0
+    } else if (amount*75/10000<35){
+        35
     } else {
         amount*75/10000
     }
-    println(commition)
+    val transfer = if (commition==0){
+        println("Переводы в сумме менее 35 рублей не предоставляются!")
+    }else {
+        println(commition)
+    }
 }
 fun mySlang(likes: Int){
     val s: String = "лайк"
@@ -40,12 +46,17 @@ fun mySlang(likes: Int){
     println ("Likes = $likes $s$sEnd")
 }
 fun endOfWord(likes: Int): String {
-    val i = if (likes>=20) {
+    val likesMin = if (likes>=100){
+        likes%100
+    }else{
+        likes
+    }
+    val i = if (likesMin>=20) {
         likes % 10
-    } else if (likes<20 && likes>5){
+    } else if (likesMin<20 && likesMin>5){
         5
     }
-    else{likes}
+    else{likesMin}
     val sEnd: String = if (i==0 || i>4){
         "ов "
     } else if (i==1){
