@@ -38,31 +38,33 @@ fun myTransfer() {
         println(commition)
     }
 }
-fun mySlang(likes: Int){
+fun mySlang(likes: Long){
     val s: String = "лайк"
-    val sEnd = endOfWord(likes)
+    val s1: String = "лайка"
+    val s2: String = "лайков"
+    val sEnd = endOfWord(likes, s, s1, s2)
 
 
-    println ("Likes = $likes $s$sEnd")
+    println ("Likes = $likes $sEnd")
 }
-fun endOfWord(likes: Int): String {
+fun endOfWord(likes: Long, s:String, s1:String,s2:String): String {
     val likesMin = if (likes>=100){
         likes%100
     }else{
         likes
     }
-    val i = if (likesMin>=20) {
-        likes % 10
+    val i:Long = if (likesMin>=20) {
+        likes%10
     } else if (likesMin<20 && likesMin>5){
         5
     }
     else{likesMin}
-    val sEnd: String = if (i==0 || i>4){
-        "ов "
-    } else if (i==1){
-        " "
+    val sEnd: String = if (i<1 || i>4){
+        s2
+    } else if (i>0 && i<2){
+        s
     } else {
-        "а "
+        s1
     }
     return sEnd
 
