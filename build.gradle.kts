@@ -1,9 +1,9 @@
 plugins {
     kotlin("jvm") version "1.8.0"
-    application
+    id("jacoco")
 }
 
-group = "org.example"
+group = "ru.netology"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -11,12 +11,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    //implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
+
+
 
 kotlin {
     jvmToolchain(8)
